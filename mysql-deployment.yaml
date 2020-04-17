@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+ name: mysql-deployment
+spec:
+ replicas: 3
+ template:
+  metadata:
+   labels:
+    app: mysql-deployment
+  spec:
+   containers:
+   - name: mysql-db
+     image: fayabobo/mysql:1.0
+     ports:
+     - containerPort: 3306
+     env:
+     - name: MYSQL_ROOT_PASSWORD
+       value: "1234"
+   - name: phpmyadmin
+     image: phpmyadmin/phpmyadmin:latest
+     ports:
+     - containerPort: 8080
+     env:
+     - name: PMA_HOST
+       value: mysql-db
+
