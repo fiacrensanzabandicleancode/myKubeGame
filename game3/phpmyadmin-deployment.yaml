@@ -1,0 +1,30 @@
+# Deploys my phpmyadmin
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  labels:
+    app: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      # Phpmyadmin container
+      - name: phpmyadmin
+        image: phpmyadmin/phpmyadmin:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 80
+        env:
+        - name: PMA_HOST
+          value: mysql-db-service-loadbalancer

@@ -1,0 +1,13 @@
+# Service which exposes my phpmyadmin
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin-service-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: phpmyadmin
+  ports:
+  - port: 8081
+    targetPort: 80
+
