@@ -1,0 +1,23 @@
+# Deploys my tomee
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomee
+  labels:
+    app: tomee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomee
+  template:
+    metadata:
+      labels:
+        app: tomee
+    spec:
+      containers:
+      # Tomee container
+      - name: tomee
+        image: fayabobo/tomee:1.0
+        ports:
+        - containerPort: 8080

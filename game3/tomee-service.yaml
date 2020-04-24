@@ -1,0 +1,13 @@
+# Service which exposes my tomee
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomee-service-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: tomee
+  ports:
+  - port: 8080
+    targetPort: 8080
+
