@@ -3,10 +3,12 @@ kind: Ingress
 metadata:
   name: tomee-ingress
 spec:
+  tls:
+  - secretName: my-secret
   rules:
   - http:
       paths:
-      - path: /*
+      - path: /
         backend:
           serviceName: tomee-service-loadbalancer
           servicePort: 8080
