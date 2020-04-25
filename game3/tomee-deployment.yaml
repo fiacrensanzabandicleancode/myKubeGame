@@ -18,6 +18,6 @@ spec:
       containers:
       # Tomee container
       - name: tomee
-        image: fayabobo/tomee:1.0
+        image: fayabobo/tomee:1.1
         ports:
         - containerPort: 8080
