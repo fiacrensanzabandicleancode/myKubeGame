@@ -1,4 +1,4 @@
-$ openssl req -new -newkey rsa:4096 -x509 -sha256 -days 1000 -nodes -out tls.crt -keyout MyKey.key
+$ openssl req -new -newkey rsa:2048 -x509 -sha256 -days 1000 -nodes -out tls.crt -keyout MyKey.key
 Generating a RSA private key
 .......................++++
 ..................++++
@@ -18,3 +18,4 @@ Organization Name (eg, company) [Internet Widgits Pty Ltd]:nsanzabandifiacreclea
 Organizational Unit Name (eg, section) []:nsanzabandifiacrecleancode
 Common Name (e.g. server FQDN or YOUR name) []:nsanzabandifiacrecleancode
 Email Address []:fayabobo@gmail.com
+fayabobo@cloudshell:~/workspace/kubernetes/myKubeGame/game3 (ninth-rhino-273220)$ kubectl create secret tls secret-https-2 --key MyKey0.key --cert tls0.crt 
