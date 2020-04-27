@@ -3,11 +3,16 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tomee-service-loadbalancer
+  annotations:
+    cloud.google.com/app-protocols: '{"my-https-port":"HTTPS","my-http-port":"HTTP"}'
 spec:
   type: LoadBalancer
   selector:
     app: tomee
   ports:
-  - port: 8443
+  - name: my-https-port
+    port: 8443
     targetPort: 8443
-
+  - name: my-http-port
+    port: 8080
+    targetPort: 8080
