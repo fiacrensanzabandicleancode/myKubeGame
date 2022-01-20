@@ -22,5 +22,9 @@ spec:
         ports:
         - containerPort: 3306
         env:
-        - name: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD # Mind that the root has no right to connect on phpmyadmin.
           value: "1234"
+        - name: MYSQL_USER # Without this user, it is not possible to connect on phpmyadmin
+          value: jeweNaBobo
+        - name: MYSQL_PASSWORD
+          value: java

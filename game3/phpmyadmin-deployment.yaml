@@ -28,3 +28,4 @@ spec:
         env:
         - name: PMA_HOST
           value: mysql-db-service-loadbalancer
+          # To login into phpmyadmin, use the credentials defined in the DB.

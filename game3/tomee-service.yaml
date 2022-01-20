@@ -16,3 +16,6 @@ spec:
   - name: my-http-port
     port: 8080
     targetPort: 8080
+    # Once the server is launched on the local, impossible to login.
+    # To know the credentials you have to follow the documentation and find these credentials in the file tomca-users.xml.
+    # The command "kubectl exec -it podName /bin/sh" Will help you to go to the folder.
