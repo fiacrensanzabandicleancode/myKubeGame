@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-express
+  labels:
+    app: mongo-express
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-express
+  template:
+    metadata:
+      labels:
+        app: mongo-express
+    spec:
+      containers:
+      - name: mongo-express
+        image: mongo-express
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8081
+        env:
+          - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+            valueFrom: 
+              secretKeyRef:
+                key: mongo-root-username 
+                name: mongodb-secret # This is the name of the secret
+          - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+            valueFrom: 
+              secretKeyRef:
+                key: mongo-root-password
+                name: mongodb-secret # This is the name of the secret
+          - name: ME_CONFIG_MONGODB_SERVER
+            valueFrom: 
+              configMapKeyRef:
+                key: database-url
+                name: mongodb-configmap # This is the name of the configMap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-express-service
+spec:
+  selector:
+    app: mongo-express
+  type: LoadBalancer # This is to make it an external service. If we do "kubectl get service" We eill have an external IP adress for this service.
+  ports:
+  - port: 8081
+    targetPort: 8081
+    protocol: TCP
+    nodePort: 30000 # This is also to make it an external service. We add the port where it will be called. The range is always between 30000-32767.
